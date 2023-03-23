@@ -1,3 +1,4 @@
+% fose.sty     2023-03-22 by Kenji Fujiwara 
 % compsoft.sty 2017-01-07 bug fixed
 % compsoft.sty 2011-12-15 bug fixed by Hideya IWASAKI 
 % compsoft.sty 2011-11-15 bug fixed by Hideya IWASAKI 
@@ -852,25 +853,42 @@
   \end{small}\vskip8mm
   \end{adjustvboxheight}}
 
+%% 2023/03/17 Kenji Fujiwra
+%% 2016/12/05 Erina Makihara を基に改良
+%% タイトルと著者がいずれも2行に渡る場合に著者名が和文アブストと重複して描画される問題に対処．
+%% Erina Makiharaによる対応から本質的な変更はしていないが， \longtitle 命令を本文中で呼び出すことで対応できるようにした．
+%% （元々はこのstyファイルを変更するような仕組みになっていた）
+\newif\iflongtitle
+\longtitlefalse
+
+\def\longtitle{\longtitletrue}
+
+\def\taikaimaketitlemain{
+  \begin{flushleft}
+    \JarticleHeader
+    % following extra vskip together with baselineskip(10mm) will produce
+    % appropriate 10mm/6mm gap between the rule and title
+    % This assumes that title is typeset with 28Q(7mm) font, and baseline
+    % is set 1mm above the bottom of the font.
+    \setbox\@temptitlebox\hbox{JarticleTitle}\ifdim\wd\@temptitlebox>\textwidth\vskip2mm\else\vskip6mm\fi
+    \leftskip=5mm
+    \JarticleTitle
+    \vskip6mm % to leave 10mm gap between title and author
+    \JarticleAuthor
+    \end{flushleft}\vfil
+}
+
 \def\Jarticle{%
 \global\def\@maketitle{\newpage \null
-%2016/12/05 Erina Makihara
-%rePiT2017　タイトルと著者がいずれも2行に渡る場合，以下の行をご使用下さい．．
-%\hbox{\vbox to233.5\Q{\baselineskip=10mm
-%上記の場合を除き，以下がデフォルトとなっています．
+\iflongtitle
+\hbox{\vbox to233.5\Q{\baselineskip=10mm
+\taikaimaketitlemain
+}}
+\else
 \hbox{\vbox to193.5\Q{\baselineskip=10mm % 193.5\Q = 9*\baselineskip
-\begin{flushleft}
-\JarticleHeader
-% following extra vskip together with baselineskip(10mm) will produce
-% appropriate 10mm/6mm gap between the rule and title
-% This assumes that title is typeset with 28Q(7mm) font, and baseline
-% is set 1mm above the bottom of the font.
-\setbox\@temptitlebox\hbox{JarticleTitle}\ifdim\wd\@temptitlebox>\textwidth\vskip2mm\else\vskip6mm\fi
-\leftskip=5mm
-\JarticleTitle
-\vskip6mm % to leave 10mm gap between title and author
-\JarticleAuthor
-\end{flushleft}\vfil}}
+\taikaimaketitlemain
+}}
+\fi
 \JEabstInsert
 }}
 
@@ -1172,10 +1190,14 @@
 % 大会予稿の場合
 %   \taikai{年度}
 % を入れなければならない．回数は年度から自動的に計算される．
-% 回数 = 年度 - 2013
+% 回数 = 年度 - 1993
 % このタイトルは，1ページ目の上の方に出力される．
 
-\def\leaderfilll{\leaders\hbox{\rule{0.2mm}{0.2mm}}\hfill}
+\def\leaderfilll{\leaders\hbox{\rule{0.2mm}{1mm}}\hfill}
+
+\addtolength{\voffset}{-1\baselineskip}
+\addtolength{\headsep}{1\baselineskip}
+\newcommand{\setetitle}[1]{\def\etitle{#1}}
 
 \def\taikai#1{%
 \ifTaikai{%
@@ -1183,15 +1205,15 @@
 \newcount\currentKai%
 \newcount\conferenceYear%
 \currentYear=#1%
-\currentKai=\currentYear\advance\currentKai by - 2014%
-\global\xdef\taikaititle{第 \number\currentKai 回実践的IT教育シンポジウム(rePiT%
-\number\currentYear )論文集}%
-\gdef\articleHeader{\hbox to\textwidth{\rule{3\@mojihaba}{0.2mm}%
-\hbox{\small\bf\hskip1mm \taikaititle\hskip1mm}\leaderfilll}}%
+\currentKai=\currentYear\advance\currentKai by - 1993%
+\global\xdef\foseabbrev{FOSE{\number\currentYear}}%
+\global\xdef\taikaititle{第 \number\currentKai 回ソフトウェア工学の基礎ワークショップ}% 使用しないので不要 by Kenji Fujiwara
+\gdef\articleHeader{\hbox to\textwidth{\leaderfilll}}
 \gdef\JarticleHeader{\articleHeader}%
 \gdef\EarticleHeader{\articleHeader}%
-\gdef\@oddheadcontents{\taikaititle}%
-\gdef\@evenheadcontents{\taikaititle}}}
+\gdef\@oddheadcontents{\foseabbrev}%
+\gdef\@evenheadcontents{\parbox[t]{.9\textwidth}{\centering\etitle}}%
+}}
 
 %%%
 % 1ページ目の左下に出力されるもの
