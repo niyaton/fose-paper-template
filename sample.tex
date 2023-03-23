@@ -1,0 +1,239 @@
+% 以下の3行は変更しないこと．
+\documentclass[T]{compsoft}
+\taikai{2023}
+\pagestyle {empty}
+
+\usepackage [dvipdfmx] {graphicx}
+
+% ユーザが定義したマクロなどはここに置く．ただし学会誌のスタイルの
+% 再定義は原則として避けること．
+
+% 以下は説明のために使用したパッケージであるため，削除可能．
+\usepackage{listings}
+\usepackage{tabularx}
+\usepackage{fancyvrb}
+
+
+\begin{document}
+
+% 論文のタイトル
+\title{実践的IT教育シンポジウム rePiT}
+%\title{サンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプル}
+%\title{サンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプル}
+
+% 著者
+% 和文論文の場合，姓と名の間には半角スペースを入れ，
+% 複数の著者の間は全角スペースで区切る
+%
+\author{井垣 宏　藤原 賢二
+%
+% ここにタイトル英訳 (英文の場合は和訳) を書く．
+% 英語タイトルは論文1ページ目左下，著者らの名前・所属一覧の一番上に表示される
+%
+\ejtitle{Research on Education of Practical Information Technologies: rePiT}
+%
+% ここに著者英文表記 (英文の場合は和文表記) および
+% 所属 (和文および英文) を書く．
+% 複数著者の所属はまとめてよい．
+%
+\shozoku{Hiroshi Igaki}{大阪工業大学}
+{Osaka Institute of Technology}
+\shozoku{Kenji Fujiwara}{東京都市大学}
+{Tokyo City University}
+% 複数著者の所属は以下のようにまとめてよい．
+\shozoku{Taro Hara, Hanako Suzuki}{大学}
+{The University}
+}
+
+%
+% 和文アブストラクト
+\Jabstract{%
+本稿は実践的IT教育シンポジウム用に，ソフトウェア科学会の論文執筆キットを基に作成したものです，
+具体的な変更箇所は\ref{sec:PaperStyle}章をご参考ください．}
+%
+% 英文アブストラクト（本サンプルの原論文にはなし）
+\Eabstract{
+This document has been prepared as a sample for rePiT2021(Research on Education of Practical Information Technologies) based on the Author Kit of JSSST.
+The detail changes are written in Sec.\ref{sec:PaperStyle}
+}
+%
+\maketitle \thispagestyle {empty}
+
+
+
+
+\section{実践的IT教育研究会}
+実践的IT教育研究会(通称rePiT，レピット)\footnote{https://sites.google.com/site/sigrepit/home}は，実践的IT教育に関連するトピックを広く議論する研究会であり，2014年3月に発足しました．
+rePiTでは，クラウド，セキュリティ，組込み，ビジネスアプリなどの先端的な分野に関してPBL (Project Based Learning) 等の実践的な情報教育に関するカリキュラムの設計，
+取り組みの現状，開発した教材，合宿・PBLの運用計画等，大学内外で共有すべき内容に関する議論を行います．
+また，教育法ツールやニーズ調査，運用上の工夫等，取り組みの推進を助ける内容も議論し，情報を共有します．
+
+活動内容として，年１回の発表会、および年１回のシンポジウムを開催予定です．
+新規の提案や、未完成であるものの興味深い結果の報告など、議論を主体とするワークショップと知見が多く含まれた研究や事例の報告を行うシンポジウムを開催します．そのほかにも国際ワークショップ等を企画します．
+
+
+\section{rePiTシンポジウム}
+\subsection{目的}
+rePiTシンポジウムでは，クラウドコンピューティング，ビッグデータ，人工知能，セキュリティ，組込みシステム，IoT，ビジネスアプリケーションなどの先端的な分野に関して
+PBL(Project Based Learning) 等の実践的な情報教育に関するカリキュラムの設計，取り組みの現状，開発した教材，合宿・PBLの運用計画等，大学内外で共有すべき内容に関する議論を行います．
+また，教育法，ツールやニーズ調査，運用上の工夫等，取り組みの推進を助ける内容も議論し，情報を共有します．
+
+シンポジウムでは幅広く論文を募集致しております．積極的なご投稿を期待しております．また，投稿された論文のうち優れた論文は，研究会推薦論文としてコンピュータソフトウェア誌に推薦されます．
+
+\subsection{特集号の企画}
+日本ソフトウェア科学会 学会誌「コンピュータソフトウェア」において本シンポジウムと連動した「実践的 IT 教育」特集 (例年 3 月 30 日頃締切) を企画しています.シンポジウムに採択された論文の投稿を推奨し，また，シンポジウムの査読結果が反映された論文を投稿頂けることを期待しております.
+
+\section{書式について} \label{sec:PaperStyle}
+本ドキュメントはrePiTシンポジウム用のスタイルシートを使用したサンプルファイルです．
+論文執筆の際はrePiT用論文執筆キットの使用を推奨します．
+以前のソフトウェア科学会の論文を基に執筆される方や，既に標準のファイルで作成を開始されている方はお手数ですが\ref{sec:differences}章に示すファイルの指定した箇所の変更をお願い致します．
+
+rePiT用執筆キットを使用，あるいは以下の変更を反映すると，以下の点が標準ファイルと比べ変更されます．
+\begin{itemize}
+	\item 1ページ目左上に「第XX回実践的IT教育シンポジウム(rePiTXXXX)論文集」の文字が追加
+	\item 全ページ番号が非表示になる
+\end{itemize}
+
+句読点，図表や数式の記述・表示等，論文執筆のルールにつきましては，
+日本ソフトウェア科学会が用意した「新しいスタイルファイルによる論文作成ガイド(本論文作成キットに含まれるguide.pdf)」をご参照下さい．
+
+\subsection{以前のソフトウェア科学会ファイルからの変更点} \label{sec:differences}
+rePiT用論文執筆キットは，ソフトウェア科学会「コンピュータソフトウェア」のスタイルファイル付属の「大会用論文」サンプルsample-TJ.texを基に作成しました．
+以下，ソフトウェア科学会「コンピュータソフトウェア」のスタイルファイルからの変更点を述べます．
+
+修正したファイルは以下の2つです．
+\begin{itemize}
+	\item compsoft.sty
+	\item sample-TJ.tex（変更後は sample.tex）
+\end{itemize}
+
+大会名の変更，年度の変更，変更箇所のソースコードの表示を行うため各ファイル以下のとおり修正致しました．
+また，以下に示す箇所以外にも，シンポジウム論文に不必要な箇所の削除や文章の変更を行っております(論文のレイアウトには関係ありません)．
+
+\subsubsection*{compsoft.sty}
+\begin{table*}[t]
+\caption{compsoft.sty変更箇所}
+\label{table:change1}
+ 	\begin{tabular}{c}
+		\begin{tabularx}{47zw}{X}
+		\hline
+		\verb|1186: \currentKai=\currentYear\advance\currentKai by - 2014 | ~\\
+		\verb|1187: \global\xdef \taikaititle|$\{$ \\
+		\hspace{130pt} \verb|第 \number\currentKai 回実践的IT教育シンポジウム(rePiT| \\
+		\verb|1188: \textbackslash number\textbackslash currentYear )論文集|$\}$ 
+		\\
+		\hline
+		\end{tabularx}
+	\end{tabular}
+\end{table*}
+
+論文1ページ目左上へ「第XX回実践的ITシンポジウム(rePiTXXXX)論文集」と表示するために，1186行目から1188行目にかけて表\ref{table:change1}のように変更致しました．
+
+\subsubsection*{sample.tex}
+年度の指定のために，3行目を以下のように変更しています（2021年度の例です）．
+
+\begin{tabularx}{23zw}{|X|}
+	\hline
+	\verb|3: \taikai{2021}|
+	\\
+	\hline
+\end{tabularx}
+
+また，ページ番号を表示させないように4行目，56行目(後者はタイトル表示部分，セクションの開始直前を指します．
+アブストラクトの行数や著者数によって変動します)を以下のように変更しています．\\
+
+\begin{tabularx}{23zw}{|X|}
+	\hline
+	\verb| 4: \pagestyle {empty}| ~\\
+	\verb| ... | ~\\
+	\verb|56: \maketitle \thispagestyle {empty}|
+	\\
+	\hline
+\end{tabularx}
+
+\subsection{タイトルおよび著者が複数行にわたる場合の注意点}
+タイトルおよび著者の表示が合計4行以上になった場合にレイアウトが崩れてしまうという報告を聞いております．
+お手数ですが $compsoft.sty$ の859行目のコメントアウトを解除し，861行目をコメントアウトして調整してください．
+
+\subsection{図・表}
+
+図の例を図\ref{fig:figExample}に，表の例を表\ref{table:tableExample}に示します．
+
+\begin{figure}[tb]
+	\includegraphics[width=7.0cm]{image/sampleFig.png}
+	\caption{図の例}
+	\label{fig:figExample}
+\end{figure}
+
+\begin{table}[tb]
+  \caption{表の例}
+  \label{table:tableExample}
+  \begin{tabular}{rcl}
+  \hline
+ 見出し1 & 見出し2& 見出し3 \\ \hline
+  \hline
+  セル11 & セル12 & セル13 \\ \hline
+  セル21 & セル22 & セル23 \\ \hline
+  セル31 & セル32 & セル33 \\ \hline
+  \hline
+  \end{tabular}
+\end{table}
+
+\newpage
+
+\subsection{リスト}
+
+リスト表記の例を以下に示します．
+
+\begin{itemize}
+	\item アイテム1
+	\item アイテム2
+	\item アイテム3
+	\begin{itemize}
+		\item アイテム3-1
+		\begin{itemize}
+			\item アイテム3-1-1
+		\end{itemize}
+	\end{itemize}
+\end{itemize}
+
+\begin{enumerate}
+	\item 番号付きアイテム1
+	\begin{enumerate}
+		\item 番号付きアイテム1-1
+		\begin{enumerate}
+			\item 番号付きアイテム1-1-1
+		\end{enumerate}
+	\end{enumerate}
+	\item 番号付きアイテム2
+\end{enumerate}
+
+\begin{description}
+	\item[見出し] 箇条書き1
+	\item[見出し] 箇条書き2
+		\begin{itemize}
+			\item kajougaki
+		\end{itemize}
+	\item[見出し] 箇条書き3
+ \end{description}
+\subsection{引用}
+引用の例\cite{A02}．
+
+引用の例その2\cite{A02}\cite{A01}
+
+\bibliographystyle{jssst}
+\bibliography{sample}
+
+\appendix
+\section{付録A} 
+付録A
+付録A
+付録A
+付録A
+付録A
+付録A
+付録A
+付録A
+付録A
+\end{document}
+
