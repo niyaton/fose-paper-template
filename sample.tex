@@ -2,7 +2,6 @@
 % If you want to write your paper in English, pass to [T,E] options to document class.
 \documentclass[T,J]{fose} % 「コンピュータソフトウェア」用のクラスファイルは compsoft です．
 \taikai{2023} % 固定です．出版委員長が毎年変更してAuthor Kitを配布してください．
-\setcounter{page}{1} % 開始ページ番号です．出版作業で使用するので論文執筆時に気にする必要はありません．
 
 \usepackage [dvipdfmx] {graphicx}
 
@@ -191,11 +190,6 @@ FOSEワークショップへご投稿いただいた論文を特集号へも投�
 この問題については「コンピュータソフトウェア」も同様の問題があるはずですがどのように対応しているのか詳細を把握していません．
 
 
-\subsubsection{ページ番号}
-ページ番号が1ページ目以外のヘッダに表示されます．
-出版作業時に適切なページ番号を採番するのでそのままの状態で執筆してください．
-
-
 \subsection{クラスファイル管理者向けの変更点解説} \label{sec:differences}
 本節では，本クラスファイルを保守するFOSEワークショップ出版委員長並びに， {\texttt compsoft.cls} に具体的にどのような変更を加えたのかを理解したい方向けの説明をします．
 FOSEワークショップ用論文執筆キットは，日本ソフトウェア科学会「コンピュータソフトウェア」のスタイルファイル付属の「大会用論文」サンプルsample-TJ.texを基に作成しました．
@@ -225,6 +219,7 @@ FOSEワークショップ用論文執筆キットは，日本ソフトウェア�
 		\verb|1211: \def\leaderfilll{\leaders\hbox{\rule{0.2mm}{1mm}}\hfill}| \\
 		\verb|1214: \gdef\@oddheadcontents{\foseabbrev}| \\
 		\verb|1215: \gdef\@evenheadcontents{\parbox[t]{.9\textwidth}{\centering\etitle}}| \\
+		\verb|1864: \phantom{\thepage}\phantom{\thevolpage}\hfil\@evenheadcontents| \\
 		\hline
 		\end{tabularx}
 	\end{tabular}
@@ -260,21 +255,14 @@ FOSEワークショップ用論文執筆キットは，日本ソフトウェア�
 	\hline
 \end{tabularx}
 
-出版作業時にページ番号を修正するために5行目に以下の内容を追加しています．
-
-\begin{tabularx}{23zw}{|X|}
-	\hline
-	\verb|5: \setcounter{page}{1}|
-	\\
-	\hline
-\end{tabularx}
-
-また，各論文の1ページ目にページ番号を表示させないように78行目(タイトル表示部分，セクションの開始直前を指します．
+ヘッダからページ番号を非表示にするために1864行目を表\ref{table:change1}のように変更しました．
+また，1868行目も同様に \verb|\phantom{\thepage}|として，ページ番号を非表示にしています．
+加えて，各論文の1ページ目にページ番号とヘッダを表示させないように77行目(タイトル表示部分，セクションの開始直前を指します．
 アブストラクトの行数や著者数によって変動します)を以下のように変更しています．\\
 
 \begin{tabularx}{23zw}{|X|}
 	\hline
-	\verb|78: \maketitle \thispagestyle {empty}|
+	\verb|77: \maketitle \thispagestyle {empty}|
 	\\
 	\hline
 \end{tabularx}
@@ -348,7 +336,7 @@ FOSEワークショップ用論文執筆キットは，日本ソフトウェア�
 
 \subsection{引用}
 文献を引用する際はBibTeXの使用を推奨します．
-また， 文献の並び順は{\texttt guide.pdf} に記載されているように第一著者の苗字のアルファベット順に可能な限りしてください．
+また， 文献の並び順は{\texttt compsoft-guide.pdf} に記載されているように第一著者の苗字のアルファベット順に可能な限りしてください．
 {\texttt bib}ファイルの各エントリに {\texttt yomi} フィールドを追加することで自動でソートされます．
 BibTeXを使用しない場合は {\texttt thebibliography} 環境を使用してください．
 例として，過去7年分と今年度のFOSEワークショップを引用します
